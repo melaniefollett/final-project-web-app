@@ -1,3 +1,0 @@
-RegexpParser
-tokenize.RegexpTokenizer
-tokenize.word_tokenize, tokenize.sent_tokenize 
