@@ -1,8 +1,5 @@
 import requests
 import json
-import csv
-import time
-import datetime
 
 # Scrape Reddit posts
 def commentScraper(username):
