@@ -115,6 +115,8 @@ def calculateModelParameters(username):
 
 def tokenizePosts(username):
 
+    nltk.download('punkt')
+
     comments_df = createDataframe(username)
     posts = comments_df["posts"]
 
