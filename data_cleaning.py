@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import nltk
-nltk.download('punkt')
+nltk.download()
 
 from nltk import RegexpParser
 from nltk.tokenize import RegexpTokenizer
