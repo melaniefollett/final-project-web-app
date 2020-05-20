@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import nltk
+nltk.download('punkt')
 
 from nltk import RegexpParser
 from nltk.tokenize import RegexpTokenizer
@@ -114,8 +115,6 @@ def calculateModelParameters(username):
     return model_parameters
 
 def tokenizePosts(username):
-
-    nltk.download('punkt')
 
     comments_df = createDataframe(username)
     posts = comments_df["posts"]
