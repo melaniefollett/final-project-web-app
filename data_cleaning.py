@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 import nltk
-nltk.download()
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
 
 from nltk import RegexpParser
 from nltk.tokenize import RegexpTokenizer
