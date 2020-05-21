@@ -2,7 +2,7 @@
 import numpy as np
 from flask import Flask, request, render_template
 import requests
-from web_scraper import commentScraper
+from web_scraper import redditScraper, twitterScraper
 from data_cleaning import calculateModelParameters
 from model import personalityTypeResult
 
@@ -12,16 +12,29 @@ app = Flask(__name__)
 def home():
     return (render_template('index.html'))
 
-@app.route('/result',methods = ['POST', 'GET'])
-def predict():
+@app.route('/reddit',methods = ['POST', 'GET'])
+def predict_reddit():
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['reddit-username']
 
-        comments = commentScraper(username)
+        comments = redditScraper(username)
 
-        scores = calculateModelParameters(username)
+        scores = calculateModelParameters(comments)
 
-        personality = personalityTypeResult(username)
+        personality = personalityTypeResult(comments)
+        
+        return (render_template('result.html', username=username, comments=comments, scores=scores, personality=personality))
+
+@app.route('/twitter',methods = ['POST', 'GET'])
+def predict_twitter():
+    if request.method == 'POST':
+        username = request.form['twitter-username']
+
+        comments = twitterScraper(username)
+
+        scores = calculateModelParameters(comments)
+
+        personality = personalityTypeResult(comments)
         
         return (render_template('result.html', username=username, comments=comments, scores=scores, personality=personality))
 

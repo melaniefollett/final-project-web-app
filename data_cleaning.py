@@ -14,21 +14,18 @@ from string import punctuation
 
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-from web_scraper import commentScraper
-
 # Convert comment list to dataframe
-def createDataframe(username):
-    
-    comments = commentScraper(username)
+def createDataframe(comments):
+
     comments_df = pd.DataFrame(comments, columns=["posts"])
 
     #print(comments_df)
     return(comments_df)
 
-def calculateModelParameters(username):
+def calculateModelParameters(comments):
 
     #Call dataframe
-    comments_df = createDataframe(username)
+    comments_df = createDataframe(comments)
 
     #Number of words per comment
     comments_df["word_count"] = comments_df['posts'].str.split().apply(len)
@@ -49,7 +46,7 @@ def calculateModelParameters(username):
     interrobangs_per_comment = comments_df["interrobang_count"].mean()
 
     #Import dataframe for counting nouns, adjectives, etc.
-    tags_df = tokenizePosts(username)
+    tags_df = tokenizePosts(comments)
 
     #Total number of nouns used
     tags_df["nouns"] = tags_df["Tagged Posts PosTag"].apply(NounCounter)
@@ -82,7 +79,7 @@ def calculateModelParameters(username):
     preposition_count = tags_df["preposition_count"].sum()
 
     # Average sentiment score
-    sentiment_score = sentimentScorer(username)
+    sentiment_score = sentimentScorer(comments)
 
     #print(comments_df)
     # print(f'Average words per comment: {words_per_comment}')
@@ -115,9 +112,9 @@ def calculateModelParameters(username):
     #print(model_parameters)
     return model_parameters
 
-def tokenizePosts(username):
+def tokenizePosts(comments):
 
-    comments_df = createDataframe(username)
+    comments_df = createDataframe(comments)
     posts = comments_df["posts"]
 
     #remove URLs 
@@ -188,9 +185,9 @@ def PrepositionCounter(tags_df):
             prepositions.append(word)
     return prepositions
 
-def sentimentScorer(username):
+def sentimentScorer(comments):
     analyzer = SentimentIntensityAnalyzer()
-    comments_df = createDataframe(username)
+    comments_df = createDataframe(comments)
     target_string = comments_df['posts']
 
     scores = []

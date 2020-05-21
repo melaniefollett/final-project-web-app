@@ -7,19 +7,19 @@ import tensorflow
 
 from data_cleaning import calculateModelParameters
 
-def createModelDataframe(username):
+def createModelDataframe(comments):
     
-    user_dict = calculateModelParameters(username)
+    user_dict = calculateModelParameters(comments)
 
     user_parameters_df = pd.DataFrame(user_dict, index=[0])
 
     #print(user_parameters_df)
     return user_parameters_df
 
-def modelIE(username):
+def modelIE(comments):
     
     #Load user data
-    test_df = createModelDataframe(username)
+    test_df = createModelDataframe(comments)
 
     #Determine if they're I or E
     model = tensorflow.keras.models.load_model('Models/NN_ie.h5')
@@ -33,10 +33,10 @@ def modelIE(username):
 
     return ie_result
 
-def modelNS(username):
+def modelNS(comments):
     
     #Load user data
-    test_df = createModelDataframe(username)
+    test_df = createModelDataframe(comments)
 
     #Determine if they're N or S
     model = tensorflow.keras.models.load_model('Models/NN_ns.h5')
@@ -50,10 +50,10 @@ def modelNS(username):
 
     return ns_result
 
-def modelFT(username):
+def modelFT(comments):
     
     #Load user data
-    test_df = createModelDataframe(username)
+    test_df = createModelDataframe(comments)
 
     #Determine if they're F or T
     model = tensorflow.keras.models.load_model('Models/NN_ft.h5')
@@ -67,10 +67,10 @@ def modelFT(username):
 
     return ft_result
 
-def modelJP(username):
+def modelJP(comments):
 
     #Load user data
-    test_df = createModelDataframe(username)
+    test_df = createModelDataframe(comments)
 
     #Determine if they're J or P
     model = tensorflow.keras.models.load_model('Models/NN_jp.h5')
@@ -84,12 +84,12 @@ def modelJP(username):
 
     return jp_result
 
-def personalityTypeResult(username):
+def personalityTypeResult(comments):
 
-    ie_result = modelIE(username)
-    ns_result = modelNS(username)
-    ft_result = modelFT(username)
-    jp_result = modelJP(username)
+    ie_result = modelIE(comments)
+    ns_result = modelNS(comments)
+    ft_result = modelFT(comments)
+    jp_result = modelJP(comments)
    
     personality_result = (f'Your personality type is {ie_result[0]}{ns_result[0]}{ft_result[0]}{jp_result[0]}!')
 

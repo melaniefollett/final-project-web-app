@@ -61,11 +61,19 @@
         <div class="col-lg-8 col-md-8 col-s-8 col-xs-8 bg-light">
           <h4 class="text-info text-center">What's Your Personality Type?</h4>
           <br>
-          <form action = "result" method = "POST">
+          <form action = "reddit" method = "POST">
             <div class="input-group mb-3">
-              <input type="text" name="username" class="form-control" method="post" placeholder="Reddit username">
+              <input type="text" name="reddit-username" class="form-control" method="post" placeholder="Reddit username">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit" name="submit_button">Submit</button>
+                <button class="btn btn-outline-secondary" type="submit" name="submit_button" value="reddit">Submit</button>
+              </div>
+            </div>
+          </form>
+          <form action = "twitter" method = "POST">
+            <div class="input-group mb-3">
+              <input type="text" name="twitter-username" class="form-control" method="post" placeholder="Twitter username">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" name="submit_button" value="twitter">Submit</button>
               </div>
             </div>
           </form>

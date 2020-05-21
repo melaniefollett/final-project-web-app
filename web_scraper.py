@@ -1,15 +1,16 @@
 import requests
 import json
+import GetOldTweets3 as got
 
 # Scrape Reddit posts
-def commentScraper(username):
+def redditScraper(username):
     
-    reddit_comments = []
+    comments = []
 
     data = getPushshiftData(username)
 
     for comment in data:
-        reddit_comments.append(comment['body'])
+        comments.append(comment['body'])
         #data = getPushshiftData(username)
 
     # obj = {}
@@ -17,7 +18,7 @@ def commentScraper(username):
     # obj['comments'] = reddit_comments
 
     #print(reddit_comments)
-    return(reddit_comments)
+    return(comments)
 
     # with open("comments.json", "w") as jsonFile:
     #     json.dump(obj, jsonFile)
@@ -31,5 +32,27 @@ def getPushshiftData(username):
     #comments = getPushshiftData(username)
     #print(comments)
 
+def twitterScraper(username):
+    
+    tweeter = username
+    count = 50
+
+    tweetCriteria = got.manager.TweetCriteria().setUsername(tweeter).setMaxTweets(count)
+    tweets = got.manager.TweetManager.getTweets(tweetCriteria)
+    comments = []
+
+    for tweet in tweets:
+        comments.append(tweet.text)
+
+    #print(users_tweets)
+    return(comments)
+
+    # obj = {}
+    # obj['author'] = tweeter
+    # obj['comments'] = users_tweets
+
+    # with open("tweeter_comments.json", "w") as jsonFile:
+    # json.dump(obj, jsonFile)
+
 #username = input("Input username:")
-#comment_scrape(username)
+#twitterScraper(username)
