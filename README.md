@@ -1,5 +1,15 @@
 # You Are What You Type: Online Personality Analysis
 
+Team Members
+
+Melanie Follett
+
+Jonathan Wu
+
+Jenie Name
+
+Jingchen Liu
+
 # Project  Overview
 People present themselves in many different ways online, but are they showing their true selves? Our application analyzes a user’s social media posts using a neural network model and determines their personality type based on the Myers-Briggs Type Indicator (MBTI) classification system.  By offering an interactive data-driven web application, we allow users to input their username for a variety of social media platforms in order to see how they are representing themselves online and if it is a reflection of their authentic selves.
 
