@@ -3,8 +3,11 @@
 Team Members
 
 Melanie Follett
+
 Jonathan Wu
+
 Jenie Name
+
 Jingchen Liu
 
 # Project  Overview
